@@ -1,0 +1,41 @@
+{% extends 'layout' %}
+
+{% block content %}
+  <h1>Hello, {{ user.name }}!</h1>
+  
+  {% if showGreeting %}
+    <p>Welcome to the LiquidJS sample application.</p>
+  {% else %}
+    <p>Greetings are turned off.</p>
+  {% endif %}
+
+  <h2>Your Items:</h2>
+  <ul>
+    {% for item in items %}
+      <li>{{ item }}</li>
+    {% endfor %}
+  </ul>
+  
+  <h2>Item Table:</h2>
+  <table>
+    <tr>
+      <th>Item</th>
+      <th>Quantity</th>
+    </tr>
+    {% for item in items %}
+      {% cycle 'odd', 'even' as row_class %}
+      <tr class="{{ row_class }}">
+        <td>{{ item }}</td>
+        <td>{{ forloop.index }}</td>
+      </tr>
+    {% endfor %}
+  </table>
+  
+  <div>
+    {{ content }}
+  </div>
+  
+  {% comment %}
+    This is a comment and won't be rendered in the HTML
+  {% endcomment %}
+{% endblock %} 
